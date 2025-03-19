@@ -1,11 +1,23 @@
 "use client";
 
+import Header from "@/components";
+
 const HomeVideo = () => {
   return (
     <>
-      <header className="absolute top-0 left-0 w-full h-[3.75rem] bg-white flex items-center px-4 shadow-md">
-        <h1> Hello World</h1>
-      </header>
+      <Header />
+      <main className="pt-20">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/BRALyJ1ikUM?si=2eILIO6FJJpwtESF"
+          title="YouTube video player"
+          // frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          // referrerpolicy="strict-origin-when-cross-origin"
+          // allowfullscreen
+        ></iframe>
+      </main>
     </>
   );
 };
