@@ -4,7 +4,7 @@ import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import { ReactQueryClientProvider } from "@/contexts/react-query";
 
 const mulish = Inter({ subsets: ["latin"] });

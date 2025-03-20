@@ -1,3 +1,3 @@
-import HomeVideo from "@/modules/home/pages";
+import HomeVideo from "@/modules/pages";
 
 export default HomeVideo;

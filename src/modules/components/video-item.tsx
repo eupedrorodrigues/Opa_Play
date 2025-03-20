@@ -1,16 +1,23 @@
 "use client";
 
 import { useRef } from "react";
-
 import { ListVideo } from "@/types/video";
 import { urlVideoFormatter } from "@/utils/formatters";
+import { Heart } from "lucide-react";
 
 interface Props {
   video: ListVideo;
   onSelectVideo: (video: ListVideo) => void;
+  isFavorite: boolean;
+  onToggleFavorite: (video: ListVideo) => void;
 }
 
-const VideoItem = ({ video, onSelectVideo }: Props) => {
+const VideoItem = ({
+  video,
+  onSelectVideo,
+  isFavorite,
+  onToggleFavorite,
+}: Props) => {
   const videoRef = useRef<HTMLIFrameElement | null>(null);
 
   const handleMouseEnter = () => {
@@ -41,7 +48,23 @@ const VideoItem = ({ video, onSelectVideo }: Props) => {
         allow="autoplay; encrypted-media"
         allowFullScreen
       ></iframe>
-      <p className="text-sm font-bold mt-2">{video.title}</p>
+
+      <div className="flex items-center justify-between mt-2">
+        <p className="text-sm font-bold">{video.title}</p>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite(video);
+          }}
+        >
+          <Heart
+            size={20}
+            className={
+              isFavorite ? "text-red-500 fill-red-500" : "text-gray-400"
+            }
+          />
+        </button>
+      </div>
     </div>
   );
 };

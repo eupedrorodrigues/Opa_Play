@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getListEmployees } from "@/service/video";
 import { ListVideo } from "@/types/video";
-import VideoItem from "@/modules/home/components/video-item";
+import VideoItem from "@/modules/components/video-item";
 
 interface Props {
   onSelectVideo: (video: ListVideo) => void;
