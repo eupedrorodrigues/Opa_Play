@@ -1,23 +1,16 @@
 "use client";
 
 import { useRef } from "react";
-import { ListVideo } from "@/types/video";
+import { VideoProps } from "@/types/video";
 import { urlVideoFormatter } from "@/utils/formatters";
 import { Heart } from "lucide-react";
-
-interface Props {
-  video: ListVideo;
-  onSelectVideo: (video: ListVideo) => void;
-  isFavorite: boolean;
-  onToggleFavorite: (video: ListVideo) => void;
-}
 
 const VideoItem = ({
   video,
   onSelectVideo,
   isFavorite,
   onToggleFavorite,
-}: Props) => {
+}: VideoProps) => {
   const videoRef = useRef<HTMLIFrameElement | null>(null);
 
   const handleMouseEnter = () => {
@@ -52,6 +45,7 @@ const VideoItem = ({
       <div className="flex items-center justify-between mt-2">
         <p className="text-sm font-bold">{video.title}</p>
         <button
+          className="cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             onToggleFavorite(video);

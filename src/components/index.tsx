@@ -2,12 +2,9 @@
 
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-interface HeaderProps {
-  onToggleShowFavorites: () => void;
-  isShowingFavorites: boolean;
-}
+import { HeaderProps } from "@/types/video";
 
 const Header = ({ onToggleShowFavorites, isShowingFavorites }: HeaderProps) => {
   return (
@@ -24,14 +21,14 @@ const Header = ({ onToggleShowFavorites, isShowingFavorites }: HeaderProps) => {
         />
       </div>
 
-      <button
-        className={`p-2 rounded-full ${
+      <Button
+        className={`p-2 rounded-full cursor-pointer ${
           isShowingFavorites ? "bg-red-500 text-white" : "bg-gray-300"
         }`}
         onClick={onToggleShowFavorites}
       >
         ❤️
-      </button>
+      </Button>
     </header>
   );
 };

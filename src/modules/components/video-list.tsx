@@ -2,22 +2,15 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { getListEmployees } from "@/service/video";
-import { ListVideo } from "@/types/video";
+import { FavoriteProps } from "@/types/video";
 import VideoItem from "@/modules/components/video-item";
-
-interface Props {
-  onSelectVideo: (video: ListVideo) => void;
-  favorites: ListVideo[];
-  onToggleFavorite: (video: ListVideo) => void;
-  videos?: ListVideo[];
-}
 
 const VideoList = ({
   onSelectVideo,
   favorites,
   onToggleFavorite,
   videos,
-}: Props) => {
+}: FavoriteProps) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["videos"],
     queryFn: getListEmployees,

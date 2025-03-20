@@ -1,11 +1,14 @@
 "use client";
 
-import { MoveLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import Header from "@/components";
 import VideoList from "@/modules/components/video-list";
 import { ListVideo } from "@/types/video";
+import {
+  getFavoritesFromStorage,
+  saveFavoritesToStorage,
+} from "@/utils/localstorage";
 
 const HomeVideo = () => {
   const [selectedVideo, setSelectedVideo] = useState<ListVideo | null>(null);
@@ -13,23 +16,19 @@ const HomeVideo = () => {
   const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
+    setFavorites(getFavoritesFromStorage());
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    saveFavoritesToStorage(favorites);
   }, [favorites]);
 
   const handleToggleFavorite = (video: ListVideo) => {
-    setFavorites((prevFavorites) => {
-      const isFavorite = prevFavorites.some((fav) => fav.id === video.id);
-      return isFavorite
-        ? prevFavorites.filter((fav) => fav.id !== video.id)
-        : [...prevFavorites, video];
-    });
+    setFavorites((prev) =>
+      prev.some((fav) => fav.id === video.id)
+        ? prev.filter((fav) => fav.id !== video.id)
+        : [...prev, video]
+    );
   };
 
   const handleSelectVideo = (video: ListVideo) => {
@@ -38,10 +37,7 @@ const HomeVideo = () => {
   };
 
   useEffect(() => {
-    const handlePopState = () => {
-      setSelectedVideo(null);
-    };
-
+    const handlePopState = () => setSelectedVideo(null);
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
@@ -54,24 +50,7 @@ const HomeVideo = () => {
       />
       <main className="pt-32 container mx-auto px-4">
         {selectedVideo ? (
-          <div className="mb-6">
-            <button
-              className="w-full max-w-sm md:max-w-3xl flex flex-col gap-10"
-              onClick={() => window.history.back()}
-            >
-              <MoveLeft
-                size={40}
-                className="bg-black p-2 rounded-full text-white animate-bounce-horizontal"
-              />
-            </button>
-            <iframe
-              className="w-full aspect-video rounded-lg shadow-lg"
-              src={selectedVideo.video}
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-            <p className="mt-2 text-lg font-semibold">{selectedVideo.title}</p>
-          </div>
+          <VideoPlayer video={selectedVideo} />
         ) : (
           <>
             <h2 className="text-xl font-bold mb-4">
@@ -89,5 +68,17 @@ const HomeVideo = () => {
     </>
   );
 };
+
+const VideoPlayer = ({ video }: { video: ListVideo }) => (
+  <div className="mb-6">
+    <iframe
+      className="w-full aspect-video rounded-lg shadow-lg"
+      src={video.video}
+      frameBorder="0"
+      allowFullScreen
+    ></iframe>
+    <p className="mt-2 text-lg font-semibold">{video.title}</p>
+  </div>
+);
 
 export default HomeVideo;
