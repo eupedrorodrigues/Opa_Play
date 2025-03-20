@@ -1,9 +1,13 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+
 import { getListEmployees } from "@/service/video";
 import { FavoriteProps } from "@/types/video";
+
 import VideoItem from "@/modules/components/video-item";
+import Loader from "@/components/loader";
+import NotFound from "@/components/error";
 
 const VideoList = ({
   onSelectVideo,
@@ -19,8 +23,8 @@ const VideoList = ({
 
   const videoList = videos || data;
 
-  if (isLoading) return <p>Carregando vídeos...</p>;
-  if (error) return <p>Erro ao carregar vídeos.</p>;
+  if (isLoading) return <Loader />;
+  if (error) return <NotFound />;
 
   return (
     <div className="video-container">

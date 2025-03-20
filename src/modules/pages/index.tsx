@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import {
   Pagination,
   PaginationContent,
@@ -8,9 +9,10 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
-
 import Header from "@/components/header/index";
 import VideoList from "@/modules/components/video-list";
+import VideoPlayer from "@/modules/components/video-player";
+
 import { ListVideo } from "@/types/video";
 import {
   getFavoritesFromStorage,
@@ -25,27 +27,22 @@ const HomeVideo = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState<ListVideo[]>([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
   const videosPerPage = 12;
 
-  useEffect(() => {
-    setFavorites(getFavoritesFromStorage());
-  }, []);
+  const fetchVideos = async () => {
+    const allVideos = await getListEmployees();
+    setVideos(allVideos);
+  };
 
-  useEffect(() => {
-    saveFavoritesToStorage(favorites);
-  }, [favorites]);
+  const filteredVideos = videos.filter((video) =>
+    video.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  useEffect(() => {
-    const fetchVideos = async () => {
-      setLoading(true);
-      const allVideos = await getListEmployees();
-      setVideos(allVideos);
-      setLoading(false);
-    };
-
-    fetchVideos();
-  }, []);
+  const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
+  const displayedVideos = filteredVideos.slice(
+    (page - 1) * videosPerPage,
+    page * videosPerPage
+  );
 
   const handleToggleFavorite = (video: ListVideo) => {
     setFavorites((prev) =>
@@ -61,19 +58,22 @@ const HomeVideo = () => {
   };
 
   useEffect(() => {
+    setFavorites(getFavoritesFromStorage());
+  }, []);
+
+  useEffect(() => {
+    saveFavoritesToStorage(favorites);
+  }, [favorites]);
+
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  useEffect(() => {
     const handlePopState = () => setSelectedVideo(null);
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
-
-  const filteredVideos = videos.filter((video) =>
-    video.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
-  const displayedVideos = filteredVideos.slice(
-    (page - 1) * videosPerPage,
-    page * videosPerPage
-  );
 
   return (
     <>
@@ -82,7 +82,7 @@ const HomeVideo = () => {
         isShowingFavorites={showFavorites}
         onSearch={setSearchTerm}
       />
-      <main className="pt-24 flex flex-col justify-evenly px-10">
+      <main className="pt-24 flex flex-col justify-evenly px-0 md:px-10">
         {selectedVideo ? (
           <VideoPlayer video={selectedVideo} />
         ) : (
@@ -96,14 +96,13 @@ const HomeVideo = () => {
               onToggleFavorite={handleToggleFavorite}
               videos={showFavorites ? favorites : displayedVideos}
             />
-            {loading && <p>Carregando vídeos...</p>}
+
             <Pagination className="my-14">
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     className="text-white"
-                    // disabled={page === 1}
                   />
                 </PaginationItem>
                 <span className="mx-4 text-white">
@@ -115,7 +114,6 @@ const HomeVideo = () => {
                       setPage((prev) => Math.min(prev + 1, totalPages))
                     }
                     className="text-white"
-                    // disabled={page === totalPages}
                   />
                 </PaginationItem>
               </PaginationContent>
@@ -126,17 +124,5 @@ const HomeVideo = () => {
     </>
   );
 };
-
-const VideoPlayer = ({ video }: { video: ListVideo }) => (
-  <div className="mb-6">
-    <iframe
-      className="w-full aspect-video rounded-lg shadow-lg"
-      src={video.video}
-      frameBorder="0"
-      allowFullScreen
-    ></iframe>
-    <h1 className="mt-2 text-white font-semibold">{video.title}</h1>
-  </div>
-);
 
 export default HomeVideo;

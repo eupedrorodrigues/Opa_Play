@@ -2,6 +2,7 @@ export interface ListVideo {
   id: string;
   title: string;
   video: string;
+  lyrics: string;
 }
 
 export interface VideoProps {
