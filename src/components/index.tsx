@@ -2,7 +2,12 @@
 
 import { Input } from "@/components/ui/input";
 
-const Header = () => {
+interface HeaderProps {
+  onToggleShowFavorites: () => void;
+  isShowingFavorites: boolean;
+}
+
+const Header = ({ onToggleShowFavorites, isShowingFavorites }: HeaderProps) => {
   return (
     <header className="absolute top-0 left-0 w-full h-[3.75rem] bg-white flex items-center justify-between px-4 shadow-md">
       <h1>Opa Play</h1>
@@ -13,6 +18,16 @@ const Header = () => {
           placeholder="Pesquisar"
         />
       </div>
+
+      {/* Botão de Favoritos */}
+      <button
+        className={`p-2 rounded-full ${
+          isShowingFavorites ? "bg-red-500 text-white" : "bg-gray-300"
+        }`}
+        onClick={onToggleShowFavorites}
+      >
+        ❤️
+      </button>
     </header>
   );
 };
