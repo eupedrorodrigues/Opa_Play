@@ -23,7 +23,7 @@ const VideoList = ({
   if (error) return <p>Erro ao carregar vídeos.</p>;
 
   return (
-    <div className="grid grid-cols-3 gap-8">
+    <div className="video-container">
       {videoList?.map((video) => (
         <VideoItem
           key={video.id}

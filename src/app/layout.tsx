@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-background min-h-screen font-sans antialiased",
+          "bg-[#040712] min-h-screen font-sans antialiased",
           mulish.className
         )}
       >

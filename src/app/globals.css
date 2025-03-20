@@ -45,6 +45,9 @@
 }
 
 :root {
+  --color-body: #040712;
+  --color-header: #040712;
+  --color-line: #292d38;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
@@ -125,8 +128,64 @@
   }
 }
 
-.animate-bounce-horizontal {
-  animation: bounce-horizontal 1s infinite;
+@keyframes videoHover {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.video-hover {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .video-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.video-hover:hover {
+  transform: translateY(-8px);
+  background-color: #292d38;
+}
+
+.video-container:hover .video-hover {
+  opacity: 0.2;
+}
+
+.video-container:hover .video-hover:hover {
+  opacity: 1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background-color: var(--color-body);
+    color: var(--color-foreground);
+  }
+  header {
+    background-color: var(--color-header);
+  }
 }
 
 @layer base {

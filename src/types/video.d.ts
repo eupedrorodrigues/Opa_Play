@@ -21,4 +21,5 @@ export interface FavoriteProps {
 export interface HeaderProps {
   onToggleShowFavorites: () => void;
   isShowingFavorites: boolean;
+  onSearch: (search: string) => void;
 }

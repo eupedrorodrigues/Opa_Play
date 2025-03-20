@@ -28,14 +28,14 @@ const VideoItem = ({
 
   return (
     <div
-      className="cursor-pointer relative p-6"
+      className="cursor-pointer relative px-4 py-8 video-hover"
       onClick={() => onSelectVideo(video)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <iframe
         ref={videoRef}
-        className="w-full h-52 rounded-lg"
+        className="w-full h-40 rounded-lg"
         src={video.video}
         frameBorder="0"
         allow="autoplay; encrypted-media"
@@ -43,7 +43,8 @@ const VideoItem = ({
       ></iframe>
 
       <div className="flex items-center justify-between mt-2">
-        <p className="text-sm font-bold">{video.title}</p>
+        <h6 className="text-sm text-white font-bold">{video.title}</h6>
+
         <button
           className="cursor-pointer"
           onClick={(e) => {
