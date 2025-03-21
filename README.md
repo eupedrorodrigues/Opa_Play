@@ -1,6 +1,9 @@
 
 # Projeto Opa Play  
 
+> [!IMPORTANT]
+> Para mais detalhes sobre o projeto, consulte o README dentro das pastas `front` ou `mockopa`.
+
 Este projeto foi desenvolvido para o processo seletivo da empresa **Opa Games**, com o objetivo de avaliar o candidato.  
 
 ## 🚀 Como rodar o projeto  
@@ -37,3 +40,5 @@ npm run dev
 ```
 
 > ℹ️ O frontend será executado na porta **3001**.  
+
+
