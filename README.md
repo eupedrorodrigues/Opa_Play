@@ -7,9 +7,15 @@ Este projeto foi desenvolvido para o processo seletivo da empresa **Opa Games**,
 
 - **Iniciar o mock server**  
 
+No terminal acesse a pasta do frontend `cd mockopa`
+
+> Obs.: Certifique-se de que todas as dependências estão instaladas. Caso necessário, execute:  
 ```
-cd mockopa  
 npm install  # ou yarn install
+```
+Para iniciar a api mockada, execute: 
+```
+npx json-server db.json
 ```
 
 > ℹ️ O servidor será iniciado na porta **3000**.  
