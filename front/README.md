@@ -12,7 +12,7 @@
 
 </br>
 
-Projeto desenvolvido para simular uma plataforma de visualização de vídeos, utilizando uma API simulada com `json-server` para buscar músicas. A interface conta com **animações interativas**, incluindo um efeito ao passar o cursor sobre os cards, proporcionando uma experiência mais dinâmica e intuitiva ao usuário.
+Projeto desenvolvido para simular uma plataforma de visualização de vídeos, utilizando uma API simulada com `json-server` para buscar músicas por meio da barra de pesquisa. A interface conta com **animações interativas**, incluindo um efeito ao passar o cursor sobre os cards, proporcionando uma experiência mais dinâmica e intuitiva ao usuário.
 
 ## Índice
 
