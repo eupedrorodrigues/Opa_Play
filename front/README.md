@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Opa Play 🎧
 
-## Getting Started
+![Next](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-First, run the development server:
+<div align="center">
+  <img src="./public/images/Macbook.png" width="450px" />
+  <img src="./public/images/iPhone.png" height="250px" />
+</div>
+
+</br>
+
+Projeto desenvolvido para simular uma plataforma de visualização de vídeos, utilizando uma API simulada com `json-server` para buscar músicas. A interface conta com **animações interativas**, incluindo um efeito ao passar o cursor sobre os cards, proporcionando uma experiência mais dinâmica e intuitiva ao usuário.
+
+## Índice
+
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Uso](#uso)
+- [Estrutura](#Estrutura)
+
+1. Clone o repositório:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/eupedrorodrigues/Opa_Play.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuração
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Após o download, vá até o diretório onde salvou o projeto
+2. Instale as dependências com `npm install` ou `yarn install`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
 
-## Learn More
+1. Abra o terminal
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+📂 public/images    # Contém as imagens do projeto
+├──
+📂 src
+ ├── 📂 app		#Estrutura de rotas e layout da aplicação
+ ├── 📂 constants   # Define constantes globais. ex.: imagens
+ ├── 📂 components  # Components globais do projeto
+ ├── 📂 modules     # Contém os components e a página
+ ├── 📂 services    # Estrutura e chamada da API
+ ├── 📂 types       # Tipagem global
+ ├── 📂 utils       # Contém funções utilitárias reutilizáveis
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
