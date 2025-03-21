@@ -1,8 +1,14 @@
-export interface ListVideo {
-  id: string;
+interface DataVideo {
   title: string;
+  description: string;
+  channelTitle: string;
+  publishedAt: string;
+}
+
+export interface ListVideo {
+  id: number;
+  snippet: DataVideo;
   video: string;
-  lyrics: string;
 }
 
 export interface VideoProps {

@@ -35,7 +35,7 @@ const HomeVideo = () => {
   };
 
   const filteredVideos = videos.filter((video) =>
-    video.title.toLowerCase().includes(searchTerm.toLowerCase())
+    video.snippet.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
@@ -82,7 +82,7 @@ const HomeVideo = () => {
         isShowingFavorites={showFavorites}
         onSearch={setSearchTerm}
       />
-      <main className="pt-24 flex flex-col justify-evenly px-0 md:px-10">
+      <main className="pt-24 flex flex-col justify-evenly px-5 md:px-10">
         {selectedVideo ? (
           <VideoPlayer video={selectedVideo} />
         ) : (
@@ -102,7 +102,7 @@ const HomeVideo = () => {
                 <PaginationItem>
                   <PaginationPrevious
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                    className="text-white"
+                    className="text-white cursor-pointer"
                   />
                 </PaginationItem>
                 <span className="mx-4 text-white">
@@ -113,7 +113,7 @@ const HomeVideo = () => {
                     onClick={() =>
                       setPage((prev) => Math.min(prev + 1, totalPages))
                     }
-                    className="text-white"
+                    className="text-white cursor-pointer"
                   />
                 </PaginationItem>
               </PaginationContent>

@@ -35,7 +35,13 @@ const Header = ({
       <div className="bg-[#DC33F9] fixed w-screen h-0.5 top-0 left-0 z-1 shadow-md"></div>
 
       <Link href="/" onClick={() => (window.location.href = "/")}>
-        <Image src={Logo.logo} alt={Logo.title} width={80} height={80} />
+        <Image
+          src={Logo.logo}
+          alt={Logo.title}
+          width={80}
+          height={80}
+          priority
+        />
       </Link>
 
       <div className="flex h-10 w-full  md:w-[40em] mr-2 md:mr-0 items-center rounded-4xl border-none bg-[#292D38]">

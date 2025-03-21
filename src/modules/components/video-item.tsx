@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import { Heart } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import { VideoProps } from "@/types/video";
 import { urlVideoFormatter } from "@/utils/formatters";
-import { Heart } from "lucide-react";
 
 const VideoItem = ({
   video,
@@ -43,9 +45,9 @@ const VideoItem = ({
       ></iframe>
 
       <div className="flex items-center justify-between mt-2">
-        <h6 className="text-sm text-white font-bold">{video.title}</h6>
+        <h6 className="text-sm font-bold">{video.snippet.title}</h6>
 
-        <button
+        <Button
           className="cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
@@ -58,7 +60,10 @@ const VideoItem = ({
               isFavorite ? "text-red-500 fill-red-500" : "text-gray-400"
             }
           />
-        </button>
+        </Button>
+      </div>
+      <div>
+        <p className="opacity-50 mt-2 text-xs">{video.snippet.channelTitle}</p>
       </div>
     </div>
   );

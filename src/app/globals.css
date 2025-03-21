@@ -127,6 +127,12 @@
   header {
     background-color: var(--color-header);
   }
+  h1,
+  h5,
+  h6,
+  p {
+    color: white;
+  }
 }
 
 @keyframes bounce-horizontal {

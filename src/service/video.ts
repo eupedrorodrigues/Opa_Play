@@ -4,7 +4,7 @@ import { ListVideo } from "@/types/video";
 
 export const getListEmployees = async (): Promise<ListVideo[]> => {
   const response = await fetchAPI({
-    url: "video",
+    url: "videos",
     options: {
       method: "GET",
     },
