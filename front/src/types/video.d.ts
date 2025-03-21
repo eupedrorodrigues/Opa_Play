@@ -11,17 +11,18 @@ export interface ListVideo {
   video: string;
 }
 
-export interface VideoProps {
-  video: ListVideo;
+interface BaseVideoProps {
   onSelectVideo: (video: ListVideo) => void;
-  isFavorite: boolean;
   onToggleFavorite: (video: ListVideo) => void;
 }
 
-export interface FavoriteProps {
-  onSelectVideo: (video: ListVideo) => void;
+export interface VideoProps extends BaseVideoProps {
+  video: ListVideo;
+  isFavorite: boolean;
+}
+
+export interface FavoriteProps extends BaseVideoProps {
   favorites: ListVideo[];
-  onToggleFavorite: (video: ListVideo) => void;
   videos?: ListVideo[];
 }
 
